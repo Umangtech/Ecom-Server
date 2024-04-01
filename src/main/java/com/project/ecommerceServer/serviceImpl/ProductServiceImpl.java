@@ -2,6 +2,7 @@ package com.project.ecommerceServer.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +17,6 @@ public class ProductServiceImpl  implements ProductService{
 	
 	@Autowired
 	private ProductDao productDao;
-	
-//	List<Product> list;
-//	
-//	public ProductServiceImpl() {
-//		
-//		list=new ArrayList<>();
-//		list.add(new Product(1,"demo Product 1",100));
-//		list.add(new Product(2,"demo Product 2",100));
-//		list.add(new Product(3,"demo Product 3",100));
-//		list.add(new Product(4,"demo Product 4",100));
-//		list.add(new Product(5,"demo Product 5",100));
-//		
-//	}
 	
 	@Override
 	public List<Product> getAllProduct(){
@@ -47,6 +35,13 @@ public class ProductServiceImpl  implements ProductService{
 			return null;
 		}
 	
+	}
+	
+	@Override
+	public void deleteProduct(Long prodId) {
+		Product entity= productDao.getOne(prodId);
+		
+		productDao.delete(entity);
 	}
 
 }
